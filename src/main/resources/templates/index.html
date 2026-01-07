@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager</title>
+</head>
+<body>
+<h1>Task Manager</h1>
+
+<form action="#" th:action="@{/add}" method="post">
+    <input type="text" name="title" placeholder="Nowe zadanie"/>
+    <button type="submit">Dodaj</button>
+</form>
+
+<ul>
+    <li th:each="task : ${tasks}" th:text="${task.title}"></li>
+</ul>
+</body>
+</html>
