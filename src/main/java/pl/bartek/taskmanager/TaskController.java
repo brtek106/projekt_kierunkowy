@@ -26,4 +26,10 @@ public class TaskController {
         repository.save(new Task(title, false));
         return "redirect:/";
     }
+
+    @PostMapping("delete")
+    public String deleteTask(@RequestParam Long id) {
+        repository.deleteById(id);
+        return "redirect:/";
+    }
 }
