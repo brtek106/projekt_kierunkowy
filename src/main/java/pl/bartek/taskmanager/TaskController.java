@@ -1,7 +1,9 @@
 package pl.bartek.taskmanager;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -16,12 +18,17 @@ public class TaskController {
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("tasks", repository.findAll());
+        model.addAttribute("task", new Task());
         return "index";
     }
 
     @PostMapping("/add")
-    public String addTask(@RequestParam("title") String title) {
-        repository.save(new Task(title, false));
+    public String addTask(@Valid @ModelAttribute("task") Task task, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("tasks", repository.findAll());
+            return "index";
+        }
+        repository.save(task);
         return "redirect:/";
     }
 
@@ -40,7 +47,10 @@ public class TaskController {
     }
 
     @PostMapping("/update")
-    public String updateTask(@ModelAttribute("task") Task task) {
+    public String updateTask(@Valid @ModelAttribute("task") Task task, BindingResult result) {
+        if (result.hasErrors()) {
+            return "edit";
+        }
         repository.save(task);
         return "redirect:/";
     }
