@@ -15,7 +15,9 @@ public class Task {
     private Long id;
     @NotBlank(message = "Tytuł nie może być pusty")
     @Size(min = 3, max = 100, message = "Tytuł musi mieć od 3 do 100 znaków")
+
     private String title;
+    private String description;
     private boolean completed;
 
     public Task() {
@@ -40,6 +42,14 @@ public class Task {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public boolean isCompleted() {
