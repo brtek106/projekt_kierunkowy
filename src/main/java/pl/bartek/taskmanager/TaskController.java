@@ -54,4 +54,15 @@ public class TaskController {
         repository.save(task);
         return "redirect:/";
     }
+
+    @PostMapping("/toggle/{id}")
+    public String toggleTaskStatus(@PathVariable Long id) {
+        Task task = repository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Nieprawidłowe ID zadania: " + id));
+
+        task.setCompleted(!task.isCompleted());
+
+        repository.save(task);
+        return "redirect:/";
+    }
 }

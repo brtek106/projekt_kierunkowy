@@ -52,8 +52,10 @@
                 <thead class="table-dark">
                 <tr>
                     <th style="width: 5%">ID</th>
-                    <th style="width: 25%">Tytuł</th>
-                    <th style="width: 45%">Opis</th> <th style="width: 25%" class="text-end">Akcje</th>
+                    <th style="width: 20%">Tytuł</th>
+                    <th style="width: 35%">Opis</th>
+                    <th style="width: 15%">Status</th>
+                    <th style="width: 25%" class="text-end">Akcje</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -61,8 +63,23 @@
                     <td th:text="${t.id}" class="text-muted small">1</td>
                     <td th:text="${t.title}" class="fw-bold">Przykładowe zadanie</td>
                     <td th:text="${t.description}" class="text-muted small">Opis zadania pojawi się tutaj</td>
+
+                    <td>
+                        <span th:class="${t.completed} ? 'badge bg-success' : 'badge bg-secondary'"
+                              th:text="${t.completed ? 'Wykonane' : 'W toku'}">
+                        </span>
+                    </td>
+
                     <td class="text-end">
                         <div class="btn-group">
+                            <form th:action="@{/toggle/{id}(id=${t.id})}" method="post" style="display:inline;">
+                                <button type="submit"
+                                        class="btn btn-sm"
+                                        th:classappend="${t.completed} ? 'btn-outline-secondary' : 'btn-outline-success'">
+                                    <span th:text="${t.completed} ? 'Cofnij' : 'Zakończ'"></span>
+                                </button>
+                            </form>
+
                             <a th:href="@{/edit/{id}(id=${t.id})}"
                                class="btn btn-sm btn-outline-warning">Edytuj</a>
 
@@ -74,8 +91,9 @@
                         </div>
                     </td>
                 </tr>
+
                 <tr th:if="${#lists.isEmpty(tasks)}">
-                    <td colspan="3" class="text-center text-muted py-4">
+                    <td colspan="5" class="text-center text-muted py-4">
                         Brak zadań na liście. Dodaj coś powyżej!
                     </td>
                 </tr>
