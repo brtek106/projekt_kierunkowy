@@ -51,16 +51,14 @@
             <table class="table table-hover align-middle">
                 <thead class="table-dark">
                 <tr>
-                    <th style="width: 5%">ID</th>
-                    <th style="width: 20%">Tytuł</th>
+                    <th style="width: 30%">Tytuł</th>
                     <th style="width: 35%">Opis</th>
                     <th style="width: 15%">Status</th>
-                    <th style="width: 25%" class="text-end">Akcje</th>
+                    <th style="width: 20%" class="text-end">Akcje</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="t : ${tasks}">
-                    <td th:text="${t.id}" class="text-muted small">1</td>
                     <td th:text="${t.title}" class="fw-bold">Przykładowe zadanie</td>
                     <td th:text="${t.description}" class="text-muted small">Opis zadania pojawi się tutaj</td>
 
@@ -93,7 +91,7 @@
                 </tr>
 
                 <tr th:if="${#lists.isEmpty(tasks)}">
-                    <td colspan="5" class="text-center text-muted py-4">
+                    <td colspan="4" class="text-center text-muted py-4">
                         Brak zadań na liście. Dodaj coś powyżej!
                     </td>
                 </tr>
