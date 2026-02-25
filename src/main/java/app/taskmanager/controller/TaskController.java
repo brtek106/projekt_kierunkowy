@@ -1,5 +1,7 @@
-package pl.bartek.taskmanager;
+package app.taskmanager.controller;
 
+import app.taskmanager.repository.TaskRepository;
+import app.taskmanager.model.Task;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

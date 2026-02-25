@@ -1,5 +1,6 @@
-package pl.bartek.taskmanager;
+package app.taskmanager;
 
+import app.taskmanager.model.Task;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

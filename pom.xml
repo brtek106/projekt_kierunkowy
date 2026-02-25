@@ -8,7 +8,7 @@
         <version>4.0.1</version>
         <relativePath/>
     </parent>
-    <groupId>pl.bartek</groupId>
+    <groupId>app</groupId>
     <artifactId>taskmanager</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>taskmanager</name>

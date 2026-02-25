@@ -1,4 +1,4 @@
-package pl.bartek.taskmanager;
+package app.taskmanager.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
