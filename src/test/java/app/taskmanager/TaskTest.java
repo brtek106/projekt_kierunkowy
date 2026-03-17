@@ -17,8 +17,16 @@ class TaskTest {
     @Test
     void shouldUpdateTaskId() {
         Task task = new Task("Zadanie", false);
-
         task.setId(100L);
+
         assertEquals(100L, task.getId());
+    }
+
+    @Test
+    void shouldToggleTaskStatus() {
+        Task task = new Task("Zadanie", false);
+        task.setCompleted(true);
+
+        assertTrue(task.isCompleted());
     }
 }
