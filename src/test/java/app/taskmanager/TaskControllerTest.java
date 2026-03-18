@@ -34,7 +34,18 @@ class TaskControllerTest {
     @Test
     void shouldRedirectAfterAddingTask() throws Exception {
         mockMvc.perform(post("/add")
-                        .param("title", "Nowe zadanie"))
-                .andExpect(status().is3xxRedirection());
+                        .param("title", "Poprawne zadanie")
+                        .param("description", "Opis"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/"));
+    }
+
+    @Test
+    void shouldRejectInvalidTask() throws Exception {
+        mockMvc.perform(post("/add")
+                        .param("title", "")
+                        .param("description", "Opis"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("index"));
     }
 }

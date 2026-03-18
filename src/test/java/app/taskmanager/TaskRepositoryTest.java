@@ -19,7 +19,7 @@ class TaskRepositoryTest {
 
     @Test
     void shouldSaveAndFindTask() {
-        Task task = new Task("Zadanie", false);
+        Task task = new Task("Zadanie testowe", false);
         Task saved = taskRepository.save(task);
 
         assertThat(taskRepository.findById(saved.getId())).isPresent();
