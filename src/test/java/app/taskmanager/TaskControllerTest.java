@@ -9,6 +9,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -27,6 +28,7 @@ class TaskControllerTest {
     @Test
     void shouldReturnIndexPage() throws Exception {
         mockMvc.perform(get("/"))
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"));
     }
@@ -36,6 +38,7 @@ class TaskControllerTest {
         mockMvc.perform(post("/add")
                         .param("title", "Poprawne zadanie")
                         .param("description", "Opis"))
+                .andDo(print())
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/"));
     }
@@ -45,6 +48,7 @@ class TaskControllerTest {
         mockMvc.perform(post("/add")
                         .param("title", "")
                         .param("description", "Opis"))
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"));
     }
